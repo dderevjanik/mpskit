@@ -8,7 +8,7 @@ Version 1.9.2
 
 Release Notes
 -------------
-
+****
 **1.9.2** - fix problem with ss RLE compression
 
 **1.9.1** - fix problem with incorrect colors when packing PNG in RGB mode
@@ -46,7 +46,7 @@ Installation
 ```bash
 
 # download
-wget -O mpskit.zip https://github.com/institution/mpskit/archive/master.zip
+wget -O mpskit.zip https://github.com/dderevjanik/mpskit/archive/master.zip
 unzip -o mpskit.zip
 cd mpskit-master
 
