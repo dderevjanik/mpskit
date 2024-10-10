@@ -15,7 +15,7 @@
 from common import * 
 from ctypes import c_uint8, c_uint16, c_uint32, c_int32
 
-def write_fab(f, data, verbose = 0):
+def write_fab(f: BytesIO, data, verbose = 0):
 	""" Compress data to FAB sequence
 	f -- file object (output)
 	data -- bytes array	
@@ -106,7 +106,7 @@ def write_fab(f, data, verbose = 0):
 	
 	
 	
-def read_fab_unrestricted(fab_name):
+def read_fab_unrestricted(fab_name: str):
 	f = open(fab_name, 'rb')
 	
 	i = 0
@@ -141,7 +141,7 @@ def fmt_bits(x_, i_):
 	
 	
 
-def read_fab(src, length=None, verbose = 0):
+def read_fab(src: BytesIO, length=None, verbose = 0) -> BytesIO:
 	"""	Decompress fab section
 	src -- file object
 	length -- uncompressed length, only for asserts
@@ -445,7 +445,7 @@ class FAB:
 		return A,B,C
 		
 
-def write_fab_optimal(f, data, verbose = 0):
+def write_fab_optimal(f: BytesIO, data, verbose = 0):
 	""" Compress data to FAB sequence
 	f -- file object (output)
 	data -- bytes array	

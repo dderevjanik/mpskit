@@ -13,6 +13,7 @@
     See LICENSE file for more details.
 """
 
+from typing import IO
 from io import BytesIO
 import json
 import struct, os, os.path, sys, io
@@ -29,7 +30,7 @@ class Error(Exception):
 
 
 
-def save_image(name, img, **param):
+def save_image(name: str, img, **param):
 	oname = name+'.png'	
 	img.save(oname, **param)
 	print(oname)
@@ -37,7 +38,7 @@ def save_image(name, img, **param):
 
 
 
-def save_header(name, h):
+def save_header(name: str, h):
 	oname = name + '.json'
 	with open(oname, 'w') as f:
 		json.dump(h.as_dict(), f, indent=2)	
@@ -46,18 +47,18 @@ def save_header(name, h):
 
 g_curr_dir = ''
 
-def open2(name,flags):
+def open2(name: str, flags):
 	if isinstance(name,_io._IOBase):		
 		return name
 	else:
-		return open(name,flags)
+		return open(name, flags)
 
-def output(fname):
+def output(fname: str):
 	print(os.path.join(g_curr_dir, fname))
 	
 
 
-def read_idstring(f, idstring):
+def read_idstring(f: IO, idstring):
 	x = f.read(len(idstring))
 	if x != idstring:
 		raise Error("invalid idstring: {}; expected={};  ".format(repr(x), repr(idstring)))
@@ -69,20 +70,20 @@ def check_magic(x, y):
 verbose = 1
 
 	
-def read_struct(f, fmt):
+def read_struct(f: IO, fmt):
 	data = f.read(struct.calcsize(fmt))
 	return struct.unpack(fmt, data)
 	
-def calcsize(fmt):
+def calcsize(fmt: str) -> int:
 	return struct.calcsize(fmt)
 	
 reads = read_struct
 
-def read(f, fmt):
+def read(f: IO, fmt):
 	return read_struct(f,fmt)[0]
 
 
-def read_until(f, b=0):	
+def read_until(f: IO, b=0) -> bytes:	
 	xs = []
 	while 1:
 		x = read_uint8(f)
@@ -98,18 +99,18 @@ def get_asciiz(buf):
 	i = buf.find(b'\x00')
 	return buf[:i].decode('ascii')
 
-def write_struct(f, fmt, ts):	
+def write_struct(f: IO, fmt, ts) -> int:	
 	return f.write(struct.pack(fmt, *ts))
 	#return struct.calcsize(fmt)
 	
 
-def read_raw(f, n):
+def read_raw(f: IO, n: int):
 	return [x for x in f.read(n)]
 	#return read_struct(f, '<B')[0]
 
 
 
-def write_raw(f, n, bs):
+def write_raw(f: IO, n: int, bs) -> int:
 	assert len(bs) == n
 	i = 0
 	for b in bs:
@@ -118,11 +119,11 @@ def write_raw(f, n, bs):
 		i += 1
 	return i
 
-def check_ext(name, ext):
+def check_ext(name: str, ext: str):
 	if not name.upper().endswith(ext.upper()):
 		fail('invalid extension: expected={}; file={};', ext, name)
 
-def read_raw(f, n):
+def read_raw(f: IO, n):
 	return f.read(n)
 	#return [x for x in f.read(n)]
 	#return read_struct(f, '<B')[0]
@@ -138,50 +139,50 @@ def encode_buffer(xs):
 		
 
 	
-def read_uint8(f):
+def read_uint8(f: IO) -> int:
 	return read_struct(f, '<B')[0]
 		
-def read_uint16(f):
+def read_uint16(f: IO) -> int:
 	return read_struct(f, '<H')[0]
 
 
-def read_int16(f):
+def read_int16(f: IO) -> int:
 	return read_struct(f, '<h')[0]
 
-def read_sint16(f):
+def read_sint16(f: IO) -> int:
 	return read_struct(f, '<h')[0]
 
 
-def read_uint32(f):
+def read_uint32(f: IO) -> int:
 	return read_struct(f, '<I')[0]
 	
-def read_int32(f):
+def read_int32(f: IO) -> int:
 	return read_struct(f, '<i')[0]
 
 	
-def write_uint8(f, val):
+def write_uint8(f: IO, val: int):
 	write_struct(f, '<B', (val,))
 	return 1
 	
-def write_uint16(f, val):
+def write_uint16(f: IO, val: int):
 	return write_struct(f, '<H', (val,))
 
-def write_sint16(f, val):
+def write_sint16(f: IO, val: int):
 	return write_struct(f, '<h', (val,))
 
-def write_int16(f, val):
+def write_int16(f: IO, val: int):
 	return write_struct(f, '<h', (val,))
 	
-def write_uint32(f, val):
+def write_uint32(f: IO, val: int):
 	return write_struct(f, '<I', (val,))
 		
-def write_int32(f, val):
+def write_int32(f: IO, val: int):
 	return write_struct(f, '<i', (val,))
 	
 
 
 
-def write_ascii(f, s):
+def write_ascii(f: IO, s):
 	for b in s.encode('ascii'):
 		write_uint8(f, b)
 
@@ -190,7 +191,7 @@ def warning(fmt, *args):
 	print('WARNING: ' + fmt.format(*args))
 	
 
-def write_string(f, n, s):
+def write_string(f: IO, n, s):
 	if len(s) > n:
 		fail('string too long (must be < {}): {}', n, s)
 				

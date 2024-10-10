@@ -42,7 +42,7 @@ size repeat content
 """
 verbose = 0
 
-def load_madspack(madspack_name):
+def load_madspack(madspack_name: str):
 	parts = []
 	i = 0
 	while i < 16:
@@ -61,7 +61,10 @@ def load_madspack(madspack_name):
 	return parts
 	
 
-def save_madspack(madspack_name, parts):
+def save_madspack(madspack_name: str, parts: list[BytesIO]):
+	"""
+	Saves parts of madspack to files
+	"""
 	for i,part in enumerate(parts):
 		part.seek(0)			
 		n = "{}.s{:02}.part".format(madspack_name, i)
@@ -70,7 +73,7 @@ def save_madspack(madspack_name, parts):
 		output(n)
 			
 
-def read_madspack(madspack_name):
+def read_madspack(madspack_name: str) -> list[BytesIO]:
 	"""
 	f -- input stream
 	"""
@@ -88,7 +91,7 @@ def read_madspack(madspack_name):
 	header = io.BytesIO(f.read(0xA0))   # max 16 parts
 	header.seek(0)
 	
-	parts = []
+	parts: list[BytesIO] = []
 	for i in range(_count):
 		flag = read_uint16(header)
 		size = read_uint32(header)
@@ -114,7 +117,7 @@ def read_madspack(madspack_name):
 		
 	
 
-def write_madspack(madspack_name, parts):
+def write_madspack(madspack_name: str, parts: list[BytesIO]):
 	"""
 	f -- output stream
 	"""
