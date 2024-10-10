@@ -36,7 +36,7 @@ from mcc import read_mcc, write_mcc
 from txr import read_txr, write_txr
 
 
-def get_handler(fmt, cmd, cwd):
+def get_handler(fmt: str, cmd: str, cwd):
 	if cmd not in ['pack','unpack']:
 		print(usage)
 		fail('invalid command; use "pack" or "unpack"')
@@ -187,7 +187,7 @@ def call_handler(handler, path):
 		common.g_curr_dir = ''
 
 
-def call(fmt, cmd, paths):
+def call(fmt: str, cmd: str, paths: list[str]):
 		
 	h = get_handler(fmt, cmd, cwd=os.getcwd())
 	
@@ -202,7 +202,7 @@ usage = '''usage: mpskit <"hag"|"mdat"|"rdat"|"ss"|"aa"|"cnv"|"ff"|"fab"|"madspa
 
 
 
-def main():
+def main() -> None:
 	if len(sys.argv) == 3:
 		a,b = sys.argv[1], sys.argv[2]
 		if (a,b) == ('charmap', 'create'):

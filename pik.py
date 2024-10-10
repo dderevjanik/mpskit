@@ -25,7 +25,7 @@ Section 1: Image (8bit indexed)
 Section 2: Palette
 """
 
-def read_pik(pik_name):
+def read_pik(pik_name: str) -> None:
 	check_ext(pik_name, '.PIK')
 	
 	parts = read_madspack(pik_name)
@@ -39,7 +39,7 @@ def read_pik(pik_name):
 	save_image(pik_name, img)
 	
 
-def read_pik_header(f):
+def read_pik_header(f: BytesIO) -> Header:
 	h = Header()
 	h.height = read_uint16(f)
 	h.width = read_uint16(f)
@@ -48,7 +48,7 @@ def read_pik_header(f):
 	return h
 
 
-def read_pik_image(part, h, pal):
+def read_pik_image(part: BytesIO, h: Header, pal) -> Image:
 	
 	img = Image.new('P', (h.width, h.height))
 	attach_palette(img, pal)

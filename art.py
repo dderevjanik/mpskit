@@ -25,7 +25,7 @@ ext = 'png'
 
 
 
-def save_header(name, h):
+def save_header(name: str, h: Header) -> None:
 	oname = name + '.json'
 	with open(oname, 'w') as f:
 		json.dump(h.as_dict(), f, indent=2)	
@@ -35,7 +35,7 @@ def save_header(name, h):
 
 	
 
-def read_art(art_name):
+def read_art(art_name: str) -> None:
 	check_ext(art_name, '.ART')
 			
 	verbose = 0	
@@ -75,12 +75,12 @@ def read_art(art_name):
 	save_image(art_name, img)
 	
 
-def load_header(name):
+def load_header(name: str) -> Header:
 	with open('{}.json'.format(name), 'r') as f:
 		return Header.from_dict(json.load(f))
 	
 
-def write_art(art_name):
+def write_art(art_name: str) -> None:
 	check_ext(art_name, '.ART')
 			
 	verbose = 0	

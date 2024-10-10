@@ -16,19 +16,19 @@ from common import *
 from PIL import Image, ImageDraw
 from PIL.ImagePalette import ImagePalette
 
+Palette = list[tuple[int, int, int]]
 
-def vga_color_trans(x):
+def vga_color_trans(x: int) -> int:
 	return int((x * 255) / 63)
 
 
 
-def attach_palette(img, pal):
+def attach_palette(img: Image.Image, pal: Palette) -> None:
 	R,G,B = [],[],[]
 	for c in pal:
 		R.append(c[0])
 		G.append(c[1])
 		B.append(c[2])
-
 	img.putpalette(
 		ImagePalette(
 			mode = 'RGB', 
@@ -41,7 +41,7 @@ def attach_palette(img, pal):
 
 
 
-def export_palette(pal, name_ss):
+def export_palette(pal: Palette, name_ss: str) -> None:
 
 	img = Image.new('P', (16,16), 0)
 
@@ -61,7 +61,7 @@ def export_palette(pal, name_ss):
 
 
 
-def read_palette_col(f):
+def read_palette_col(f: BytesIO) -> Palette:
 	""" Read palette as encoded in Colonization	
 	repeat 256 
 		uint8 r
@@ -69,7 +69,7 @@ def read_palette_col(f):
 		uint8 b	
 	"""
 	
-	pal = []
+	pal: Palette = []
 
 	for i in range(256):
 		rr,gg,bb = reads(f, '3b')
@@ -84,7 +84,7 @@ def read_palette_col(f):
 	return pal
 
 
-def read_palette_rex(f, fill=(0,0,0)):
+def read_palette_rex(f: BytesIO, fill=(0,0,0)) -> Palette:
 	"""	Read palette as encoded in Rex	
 	uint16 ncolors
 	repeat ncolors 
@@ -98,7 +98,7 @@ def read_palette_rex(f, fill=(0,0,0)):
 	
 	ncolors = read_uint16(f)
 
-	pal = []
+	pal: Palette = []
 
 	for i in range(ncolors):
 		rr,gg,bb,ind,u2,flags = reads(f, '6b')
