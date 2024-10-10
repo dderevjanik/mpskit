@@ -62,6 +62,16 @@ chere -i -t mintty
 
 ```
 
+or using Dockerfile
+
+```bash
+# Build Docker image from current Repo
+docker build -t mpskit .
+# Run Docker container with mpskit
+docker run -it --rm -v $(pwd):/usr/src/app mpskit
+#docker run -it --rm -v $(pwd):/usr/src/app mpskit pik unpack WOODPANL.PIK
+```
+
 
 Usage examples
 --------------
