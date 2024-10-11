@@ -33,7 +33,7 @@ Section 3: Misc
 """
 verbose = 0
 
-def read_aa(aa_name):
+def read_aa(aa_name: str) -> None:
 	check_ext(aa_name, '.AA')
 	
 	parts = read_madspack(aa_name)
@@ -48,7 +48,7 @@ def read_aa(aa_name):
 		save_aa_messages(aa_name, msgs)
 
 
-def write_aa(aa_name):
+def write_aa(aa_name: str) -> None:
 	check_ext(aa_name, '.AA')
 	
 	
@@ -73,7 +73,7 @@ def write_aa(aa_name):
 
 
 
-def read_aa_messages(aa_name, msg_count):
+def read_aa_messages(aa_name: str, msg_count: int) :
 	f = open("{}.s01.part".format(aa_name), 'rb')
 	
 	msgs = []
@@ -82,14 +82,14 @@ def read_aa_messages(aa_name, msg_count):
 	
 	return msgs
 	
-def write_aa_messages(f, ms):
+def write_aa_messages(f: IO, ms) -> int:
 	i = 0
 	for m in ms:		
 		i += write_aa_message(f, m)
 	return i
 	
 
-def write_aa_message(f, m):
+def write_aa_message(f: IO, m):
 	
 	i = 0
 	i += write_sint16(f, m.sound_id)
@@ -163,7 +163,7 @@ def load_aa_messages(aa_name):
 		
 
 
-def save_aa_header(aa_name, h):
+def save_aa_header(aa_name: str, h) -> None:
 	n = aa_name+'.json'
 	open(n, 'w').write(json.dumps(h.as_list(), indent=2))
 	output(n)
@@ -171,7 +171,7 @@ def save_aa_header(aa_name, h):
 		
 
 
-def read_aa_header(aa_name):
+def read_aa_header(aa_name: str):
 	
 	f = open2(aa_name+'.s00.part', 'rb')
 

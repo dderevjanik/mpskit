@@ -26,7 +26,7 @@ Section 2: Palette
 """
 
 def read_pik(pik_name: str) -> None:
-	check_ext(pik_name, '.PIK')
+	cxheck_ext(pik_name, '.PIK')
 	
 	parts = read_madspack(pik_name)
 	assert len(parts) >= 3

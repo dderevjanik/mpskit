@@ -47,13 +47,13 @@ def save_header(name: str, h):
 
 g_curr_dir = ''
 
-def open2(name: str, flags):
+def open2(name: str | IO, flags) -> IO:
 	if isinstance(name,_io._IOBase):		
 		return name
 	else:
 		return open(name, flags)
 
-def output(fname: str):
+def output(fname: str) -> None:
 	print(os.path.join(g_curr_dir, fname))
 	
 
@@ -119,7 +119,7 @@ def write_raw(f: IO, n: int, bs) -> int:
 		i += 1
 	return i
 
-def check_ext(name: str, ext: str):
+def check_ext(name: str, ext: str) -> None:
 	if not name.upper().endswith(ext.upper()):
 		fail('invalid extension: expected={}; file={};', ext, name)
 
