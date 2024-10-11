@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mpskit"
+authors = [
+    {name = "Daniel Derevjanik", email = "daniel.derevjanik@gmail.com"}
+]
+description = "package description"
+version = "0.0.1"
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "pillow==8.0.0"
+]
