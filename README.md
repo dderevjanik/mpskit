@@ -1,14 +1,11 @@
-mpskit
-======
+# mpskit
 
 Madspack file format decoder/encoder for Rex Nebular, Dragonsphere, Colonization and other Microprose games. Can run on Linux or Windows (using Cygwin). Designed as a translation/modding tool.
 
+**Version:** 1.9.2
 
-Version 1.9.2
+## Release Notes
 
-Release Notes
--------------
-****
 **1.9.2** - fix problem with ss RLE compression
 
 **1.9.1** - fix problem with incorrect colors when packing PNG in RGB mode
@@ -33,8 +30,8 @@ Release Notes
 If you have modified MESSAGES.DAT.msg.json you will need to pair it up with MESSAGES.DAT.id.json extracted from unmodified MESSAGES.DAT
 
 
-Installation
-------------
+## Installation
+
 
 1) Install dependencies
 
@@ -44,22 +41,8 @@ Installation
 2) Open terminal (Cygwin terminal on Windows) and run following commands:
 
 ```bash
-
-# download
-wget -O mpskit.zip https://github.com/dderevjanik/mpskit/archive/master.zip
-unzip -o mpskit.zip
-cd mpskit-master
-
-# install in system path (sudo may be required)
-echo "python3 `pwd`/main.py \$*" > /usr/local/bin/mpskit
-chmod +x /usr/local/bin/mpskit
-
-# test - should display usage
-mpskit
-
-# optional Windows step: add "Open terminal here" option to Windows Explorer
-chere -i -t mintty
-
+python3 -m pip install git+https://github.com/dderevjanik/mpskit.git@master
+python3 -m mpskit
 ```
 
 or using Dockerfile
@@ -73,10 +56,9 @@ docker run -it --rm -v $(pwd):/usr/src/app mpskit
 ```
 
 
-Usage examples
---------------
+## Usage examples
 
-### General usage ###
+### General usage
 
 	cd REX
 
@@ -163,12 +145,7 @@ Now in `SECTION9.HAG.dir/RM951A.AA.msg.json`
 	# NOTE 1: MCC colors will be mixed but will work correctly in-game
 	# NOTE 2: sprite width and height cannot be modified
 
-
-
-
-
-Supported File Formats
-----------------------
+## Supported File Formats
 
 |command  |applied to                            |content             |games    |
 |---------|--------------------------------------|--------------------|---------|
@@ -193,15 +170,14 @@ col = Colonization,
 dsp = Dragonsphere,
 leg = The Legacy: Realm of Terror
 
-Notes
------
+## Notes
 
 * png files are written in indexed mode with embedded palette ("Colormap" dialog in GIMP)
 * changes to embedded palette are ignored by mpskit
 * charmap will not be applied to "[]" characters and anything between them
 
-License
--------
+## License
+
 AGPLv3 or later
 
 This program is free software: you can redistribute it and/or modify
@@ -217,12 +193,12 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Contact
--------
+## Contact
+
 Institution, sta256+mpskit@gmail.com
 
-Thanks to
----------
+## Thanks to
+
 ScummVM Project (http://scummvm.org/)
 
 
