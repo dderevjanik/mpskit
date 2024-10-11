@@ -12,7 +12,7 @@
 
     See LICENSE file for more details.
 """
-from common import * 
+from mpskit.common import * 
 from ctypes import c_uint8, c_uint16, c_uint32, c_int32
 
 def write_fab(f: BytesIO, data, verbose = 0):

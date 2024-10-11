@@ -12,8 +12,8 @@
 
     See LICENSE file for more details.
 """
-from common import *
-from fab import *
+from mpskit.common import *
+from mpskit.fab import *
 
 
 

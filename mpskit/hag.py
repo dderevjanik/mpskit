@@ -13,7 +13,7 @@
     See LICENSE file for more details.
 """
 import os
-from common import *	
+from mpskit.common import *	
 
 verbose = 0
 

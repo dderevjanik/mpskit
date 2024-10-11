@@ -1,5 +1,5 @@
 """ Copyright 2015-2017  sta256+mpskit at gmail.com
-
+    
     This file is part of mpskit.
 
     This program is free software: you can redistribute it and/or modify
@@ -13,38 +13,39 @@
     See LICENSE file for more details.
 """
 
-from common import *
+from mpskit.common import *
 """
-TXR: just a text file
-"""
+Raw DAT: null-terminated strings, no compression, no madspack
 
+"""
 verbose = 0
 
-def read_txr(name):
-	check_ext(name, '.TXR')
-
+def read_rdat(name):
+	check_ext(name, '.DAT')
+		
 	r = open(name, 'rb').read()
-	rs = r.split(b"\r\n")
-
-	ss = [decode_string(r) for r in rs]
-
-	on = '{}.json'.format(name)
+	xs = r.split(b'\x00')
+	
+	msgs = [decode_string(x) for x in xs]
+	
+	on = '{}.rdat.json'.format(name)
 	with open(on, 'w') as f:
-		json.dump(ss, f, indent=2, ensure_ascii=False)
-
+		json.dump(msgs, f, indent=2, ensure_ascii=False)
+		
 	output(on)
-
-def write_txr(name):
-	check_ext(name, '.TXR')
-
-	on = '{}.json'.format(name)
+	
+def write_rdat(name):
+	check_ext(name, '.DAT')
+	
+	on = '{}.rdat.json'.format(name)
 	with open(on, 'r') as f:
-		ss = json.load(f)
-
-	r = b"\r\n".join([encode_string(s) for s in ss])
-
+		msgs = json.load(f)
+	
+	xs = [encode_string(m, null_term=True) for m in msgs]
+	
 	with open(name, 'wb') as f:
-		f.write(r)
-
+		for x in xs:
+			f.write(x)
+	
 	output(name)
-
+	

@@ -12,9 +12,9 @@
 
     See LICENSE file for more details.
 """
-from common import *
+from mpskit.common import *
 from PIL import Image, ImageDraw
-from palette import attach_palette
+from mpskit.palette import attach_palette
 import sys, struct, io
 	
 

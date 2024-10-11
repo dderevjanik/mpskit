@@ -18,9 +18,9 @@ from io import BytesIO
 import json
 import struct, os, os.path, sys, io
 import _io, sys
-from conf import conf
-from record import Record
-from fail import fail
+from mpskit.conf import conf
+from mpskit.record import Record
+from mpskit.fail import fail
 from PIL import Image
 
 class Error(Exception): 
@@ -47,7 +47,7 @@ def save_header(name: str, h):
 
 g_curr_dir = ''
 
-def open2(name: str | IO, flags) -> IO:
+def open2(name: str, flags) -> IO:
 	if isinstance(name,_io._IOBase):		
 		return name
 	else:

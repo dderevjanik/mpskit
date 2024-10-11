@@ -14,8 +14,8 @@
 """
 
 from io import BytesIO
-from common import *
-from fab import read_fab, write_fab
+from mpskit.common import *
+from mpskit.fab import read_fab, write_fab
 
 
 """

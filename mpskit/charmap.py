@@ -1,9 +1,9 @@
 import sys
 import os.path
 import json
-from record import Record
-from conf import conf
-from fail import fail,warning,printf
+from mpskit.record import Record
+from mpskit.conf import conf
+from mpskit.fail import fail,warning,printf
 
 # NOTE: charmap will not be applied to "[]" characters and everything inside them
 # NOTE: charmap: keep lower and upper case characters separated by 32

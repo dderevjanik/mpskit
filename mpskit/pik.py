@@ -12,10 +12,10 @@
 
     See LICENSE file for more details.
 """
-from common import *
-from madspack import read_madspack, write_madspack, save_madspack
+from mpskit.common import *
+from mpskit.madspack import read_madspack, write_madspack, save_madspack
 from PIL import Image
-from palette import read_palette_col, attach_palette
+from mpskit.palette import read_palette_col, attach_palette
 
 """
 PIK (Colonization)

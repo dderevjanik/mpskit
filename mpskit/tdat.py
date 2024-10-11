@@ -13,39 +13,42 @@
     See LICENSE file for more details.
 """
 
-from common import *
+from mpskit.common import *
 """
-Raw DAT: null-terminated strings, no compression, no madspack
+Text DAT: one long null-terminated string, no compression, no madspack
 
 """
 verbose = 0
 
-def read_rdat(name):
+def read_tdat(name):
 	check_ext(name, '.DAT')
 		
 	r = open(name, 'rb').read()
-	xs = r.split(b'\x00')
+	
+	if r.count(b'\x00') > 0:
+		fail("not tdat file, use rdat instead")
+	
+	xs = r.split(b"\r\n")
 	
 	msgs = [decode_string(x) for x in xs]
-	
-	on = '{}.rdat.json'.format(name)
+		
+	on = '{}.tdat.json'.format(name)
 	with open(on, 'w') as f:
 		json.dump(msgs, f, indent=2, ensure_ascii=False)
 		
 	output(on)
 	
-def write_rdat(name):
+def write_tdat(name):
 	check_ext(name, '.DAT')
 	
-	on = '{}.rdat.json'.format(name)
+	on = '{}.tdat.json'.format(name)
 	with open(on, 'r') as f:
 		msgs = json.load(f)
 	
-	xs = [encode_string(m, null_term=True) for m in msgs]
+	r = b"\r\n".join([encode_string(s) for s in msgs])
 	
 	with open(name, 'wb') as f:
-		for x in xs:
-			f.write(x)
+		f.write(r)
 	
 	output(name)
 	

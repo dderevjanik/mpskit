@@ -12,7 +12,7 @@
 
     See LICENSE file for more details.
 """
-from common import *
+from mpskit.common import *
 from PIL import Image, ImageDraw
 from PIL.ImagePalette import ImagePalette
 

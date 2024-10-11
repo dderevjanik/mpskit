@@ -13,27 +13,27 @@
     See LICENSE file for more details.
 """
 import sys
-from common import Error, warning
+from mpskit.common import Error, warning
 import os, sys
-import common
-from charmap import load_charmap, save_default_charmap
-from fail import fail
-from hag import read_madsconcat,write_madsconcat
-from dat import read_mdat, write_mdat
-from rdat import read_rdat, write_rdat
-from tdat import read_tdat, write_tdat
-from tdat import read_tdat, write_tdat
-from ss import read_ss, write_ss
-from fab import read_fab_unrestricted
-from madspack import read_madspack, save_madspack, load_madspack, write_madspack
-from aa import read_aa, write_aa
-from ff import read_ff, write_ff, export_ftb
-from cnv import read_cnv, write_cnv
-from pik import read_pik
-from art import read_art, write_art
-from lff import read_lff, write_lff
-from mcc import read_mcc, write_mcc
-from txr import read_txr, write_txr
+import mpskit.common
+from mpskit.charmap import load_charmap, save_default_charmap
+from mpskit.fail import fail
+from mpskit.hag import read_madsconcat,write_madsconcat
+from mpskit.dat import read_mdat, write_mdat
+from mpskit.rdat import read_rdat, write_rdat
+from mpskit.tdat import read_tdat, write_tdat
+from mpskit.tdat import read_tdat, write_tdat
+from mpskit.ss import read_ss, write_ss
+from mpskit.fab import read_fab_unrestricted
+from mpskit.madspack import read_madspack, save_madspack, load_madspack, write_madspack
+from mpskit.aa import read_aa, write_aa
+from mpskit.ff import read_ff, write_ff, export_ftb
+from mpskit.cnv import read_cnv, write_cnv
+from mpskit.pik import read_pik
+from mpskit.art import read_art, write_art
+from mpskit.lff import read_lff, write_lff
+from mpskit.mcc import read_mcc, write_mcc
+from mpskit.txr import read_txr, write_txr
 
 
 def get_handler(fmt: str, cmd: str, cwd):

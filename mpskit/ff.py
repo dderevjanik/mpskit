@@ -12,10 +12,10 @@
 
     See LICENSE file for more details.
 """
-from common import *
-from madspack import read_madspack, save_madspack, write_madspack
+from mpskit.common import *
+from mpskit.madspack import read_madspack, save_madspack, write_madspack
 from PIL import Image
-from palette import attach_palette
+from mpskit.palette import attach_palette
 """
 FF file format
 

@@ -12,12 +12,12 @@
 
     See LICENSE file for more details.
 """
-from common import *
-from madspack import read_madspack, write_madspack, save_madspack
+from mpskit.common import *
+from mpskit.madspack import read_madspack, write_madspack, save_madspack
 from collections import namedtuple
 from PIL import Image, ImageDraw
-from fab import read_fab
-from palette import read_palette_col, read_palette_rex, attach_palette, export_palette
+from mpskit.fab import read_fab
+from mpskit.palette import read_palette_col, read_palette_rex, attach_palette, export_palette
 
 ext = 'png'
 

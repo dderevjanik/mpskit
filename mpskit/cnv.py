@@ -13,8 +13,8 @@
     See LICENSE file for more details.
 """
 
-from common import *
-from madspack import read_madspack, save_madspack, write_madspack, load_madspack
+from mpskit.common import *
+from mpskit.madspack import read_madspack, save_madspack, write_madspack, load_madspack
 """
 CNV file format
 
